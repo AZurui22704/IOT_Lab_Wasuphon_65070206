@@ -31,8 +31,6 @@ app.add_middleware(
 
 # https://fastapi.tiangolo.com/tutorial/sql-databases/#crud-utils
 
-#Book Table in Class
-
 @router_v1.get('/books')
 async def get_books(db: Session = Depends(get_db)):
     return db.query(models.Book).all()
@@ -43,7 +41,6 @@ async def get_book(book_id: int, db: Session = Depends(get_db)):
 
 @router_v1.post('/books')
 async def create_book(book: dict, response: Response, db: Session = Depends(get_db)):
-    # TODO: Add validation
     newbook = models.Book(id=book['id'],title=book['title'], author=book['author'], year=book['year'], is_published=book['is_published'])
     db.add(newbook)
     db.commit()
@@ -58,7 +55,6 @@ async def update_book(book_id: int, book: dict, db: Session = Depends(get_db)):
             setattr(db_item, key, value)
     db.commit()
     db.refresh(db_item)
-    # response.status_code = 201
     return db_item
 
 @router_v1.delete('/books/{book_id}')
@@ -69,7 +65,8 @@ async def delete_book(book_id: int, book: dict,db: Session = Depends(get_db)):
     return "Delete successfully"
     
 
-# Assignments
+
+#--------homework-------#
 
 @router_v1.get('/students')
 async def get_students(db: Session = Depends(get_db)):
@@ -81,13 +78,12 @@ async def get_students(student_id: int, db: Session = Depends(get_db)):
 
 @router_v1.post('/students')
 async def create_student(student: dict, response: Response, db: Session = Depends(get_db)):
-    # TODO: Add validation
-    newstudent = models.Student(id=student['id'], firstname=student['firstname'], lastname=student['lastname'], birthdate=student['birthdate'], gender=student['gender'])
-    db.add(newstudent)
+    new_student = models.Student(id=student['id'], firstname=student['firstname'], lastname=student['lastname'], birthdate=student['birthdate'], gender=student['gender'])
+    db.add(new_student)
     db.commit()
-    db.refresh(newstudent)
+    db.refresh(new_student)
     response.status_code = 201
-    return newstudent
+    return new_student
 
 @router_v1.patch('/students/{student_id}')
 async def update_student(student_id: int, student: dict, db: Session = Depends(get_db)):
@@ -96,7 +92,6 @@ async def update_student(student_id: int, student: dict, db: Session = Depends(g
             setattr(db_item, key, value)
     db.commit()
     db.refresh(db_item)
-    # response.status_code = 201
     return db_item
 
 @router_v1.delete('/students/{student_id}')
