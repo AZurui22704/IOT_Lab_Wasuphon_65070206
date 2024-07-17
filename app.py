@@ -66,7 +66,7 @@ async def delete_book(book_id: int, book: dict,db: Session = Depends(get_db)):
     
 
 
-#--------homework-------#
+##--------homework-------##
 
 @router_v1.get('/students')
 async def get_students(db: Session = Depends(get_db)):
@@ -78,7 +78,7 @@ async def get_students(student_id: int, db: Session = Depends(get_db)):
 
 @router_v1.post('/students')
 async def create_student(student: dict, response: Response, db: Session = Depends(get_db)):
-    new_student = models.Student(id=student['id'], firstname=student['firstname'], lastname=student['lastname'], birthdate=student['birthdate'], gender=student['gender'])
+    new_student = models.Student(id=student['id'], firstname=student['firstname'], lastname=student['lastname'], birthdate=student['birthdate'], gender=student['gender'], university=student['university'], age=student['age'])
     db.add(new_student)
     db.commit()
     db.refresh(new_student)

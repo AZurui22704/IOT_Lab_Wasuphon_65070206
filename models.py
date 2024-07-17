@@ -20,4 +20,6 @@ class Student(Base):
     lastname = Column(String, index=True)
     birthdate = Column(String, index=True)
     gender = Column(String, index=True)
+    age = Column(Integer, index=True)
+    university = Column(String, index=True)
 
