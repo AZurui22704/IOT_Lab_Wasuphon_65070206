@@ -41,7 +41,7 @@ async def get_book(book_id: int, db: Session = Depends(get_db)):
 
 @router_v1.post('/books')
 async def create_book(book: dict, response: Response, db: Session = Depends(get_db)):
-    newbook = models.Book(id=book['id'],title=book['title'], author=book['author'], year=book['year'], is_published=book['is_published'])
+    newbook = models.Book(title=book['title'], author=book['author'], year=book['year'], is_published=book['is_published'])
     db.add(newbook)
     db.commit()
     db.refresh(newbook)
@@ -78,7 +78,7 @@ async def get_students(student_id: int, db: Session = Depends(get_db)):
 
 @router_v1.post('/students')
 async def create_student(student: dict, response: Response, db: Session = Depends(get_db)):
-    new_student = models.Student(id=student['id'], firstname=student['firstname'], lastname=student['lastname'], birthdate=student['birthdate'], gender=student['gender'], university=student['university'], age=student['age'])
+    new_student = models.Student(id=student['id'],firstname=student['firstname'], lastname=student['lastname'], birthdate=student['birthdate'], gender=student['gender'], university=student['university'], age=student['age'])
     db.add(new_student)
     db.commit()
     db.refresh(new_student)
