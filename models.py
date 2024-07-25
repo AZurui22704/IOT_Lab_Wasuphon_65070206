@@ -23,3 +23,13 @@ class Student(Base):
     age = Column(Integer, index=True)
     university = Column(String, index=True)
 
+class Menu(Base):
+    __tablename__ = 'menus'
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    quantity = Column(Integer, index=True)
+    note = Column(String, index=True)
+    price = Column(String, index=True)
+    detail = Column(String, index=True)
+
