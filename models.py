@@ -30,6 +30,6 @@ class Menu(Base):
     name = Column(String, index=True)
     quantity = Column(Integer, index=True)
     note = Column(String, index=True)
-    price = Column(String, index=True)
+    price = Column(Integer, index=True)
     detail = Column(String, index=True)
 
