@@ -1,8 +1,7 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-# from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship
 
 from database import Base
-
 class Book(Base):
     __tablename__ = 'books'
 
@@ -25,7 +24,6 @@ class Student(Base):
 
 class Menu(Base):
     __tablename__ = 'menus'
-
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     quantity = Column(Integer, index=True)
